@@ -1,0 +1,109 @@
+* tree-sitter-hledger-journal
+
+A [[https://tree-sitter.github.io][tree-sitter]] grammar for [[https://hledger.org][hledger]] journal files (=.journal=, =.j=,
+=.hledger=). The grammar is named =hledger_journal=.
+
+Each directive and subdirective has its own node type, and each amount has
+separate =commodity= and =quantity= nodes. A formatter or linter can read
+these from the tree without parsing the text again.
+
+** Status
+
+hledger 1.52's test suite has 714 journals that hledger accepts. This grammar
+parses 694 of them (97.2%) without errors. The other 20 use syntax the
+grammar doesn't support yet:
+
+- lot dates and notes, such as =[2026-01-01] (lot A)=
+- legacy Ledger syntax: =!include=, =!Y=, =N=, =apply fixed= and valuation
+  expressions
+- digit groups separated by en spaces
+- top-level comments indented by one space
+- =C$= or =0!= as a commodity, and years after 9999
+
+CI repeats this measurement on every push and fails if fewer than 97% of the
+journals parse. [[file:AGENTS.md][AGENTS.md]] explains how to run it locally.
+
+The grammar supports:
+
+- transactions with dates, secondary dates, status, code, payee and comments
+- postings with amounts, costs (=@=, =@@=), lot prices (={…}=, ={{…}}=) and
+  balance assertions (~=~, ~==~, ~=*~, ~==*~), including a cost on the
+  asserted amount
+- periodic transactions, such as =~ monthly from 2024/01= or
+  =~ every 2nd monday=
+- automated transactions, including multipliers such as =*-1=
+- the directives =account=, =commodity=, =payee=, =tag=, =alias=,
+  =end aliases=, =apply account=, =end apply account=, =decimal-mark=, =Y=,
+  =year=, =P=, =D=, =include= and =comment= … =end comment=, with their
+  subdirectives
+- the number formats =1,234.56=, =1.234,56=, =1 234,56= (also with no-break
+  spaces), =.5= and =1e3=
+- LF and CRLF line endings, trailing whitespace, and a last line without a
+  newline
+
+** Syntax tree
+
+| Node                                                                        | What it is                                                         |
+|-----------------------------------------------------------------------------+--------------------------------------------------------------------|
+| =journal_item=                                                              | one top-level item                                                 |
+| =xact=                                                                      | a transaction, holding one =plain_xact=, =periodic_xact= or =automated_xact= |
+| =date=, =effective_date=, =status=, =code=, =payee=, =note=                 | parts of a transaction's first line                                |
+| =interval=, =date_spec=                                                     | the period expression of a periodic transaction                    |
+| =query=                                                                     | the query of an automated transaction                              |
+| =posting=                                                                   | a posting                                                          |
+| =account=                                                                   | an account name                                                    |
+| =amount=                                                                    | an amount, holding =commodity= and =quantity= or =negative_quantity= |
+| =price=, =lot_price=                                                        | a cost (=@=, =@@=) or a lot price (={…}=)                          |
+| =balance_assertion=                                                         | a balance assertion or assignment                                  |
+| =multiplier=                                                                | =*N= in a posting of an automated transaction                      |
+| =accountdirective=, =commoditydirective=, =payeedirective=, =tagdirective=, … | a directive, with one node type per directive                    |
+| =account_subdirective=, =commodity_subdirective=, =payee_subdirective=, …   | a subdirective, with one node type per subdirective                |
+| =unknown_subdirective=                                                      | an indented line under a directive that hledger ignores            |
+| =comment=, =comment_block=                                                  | a comment line, or a =comment= … =end comment= block               |
+
+** Neovim
+
+This registers the parser with the =main= branch of [[https://github.com/nvim-treesitter/nvim-treesitter][nvim-treesitter]] and uses it
+for the =ledger= and =hledger= filetypes:
+
+#+begin_src lua
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'TSUpdate',
+  callback = function()
+    require('nvim-treesitter.parsers').hledger_journal = {
+      install_info = {
+        url = 'https://github.com/bartfaitamas/tree-sitter-hledger-journal',
+        queries = 'queries',
+      },
+    }
+  end,
+})
+vim.treesitter.language.register('hledger_journal', { 'ledger', 'hledger' })
+#+end_src
+
+Then run =:TSInstall hledger_journal=.
+
+** Nix
+
+Add the flake as an input:
+
+#+begin_src nix
+inputs.tree-sitter-hledger-journal.url = "github:bartfaitamas/tree-sitter-hledger-journal";
+#+end_src
+
+The grammar is =packages.<system>.default=. With =overlays.default= applied to
+nixpkgs, it is also =pkgs.tree-sitter-grammars.tree-sitter-hledger-journal=.
+
+** Development
+
+Run =nix develop=, then =tree-sitter generate= and =tree-sitter test=.
+=nix flake check -L= runs everything CI runs. [[file:AGENTS.md][AGENTS.md]] lists the commands,
+the steps for a grammar change and the rules the grammar keeps.
+
+** Credits
+
+The grammar started from [[https://github.com/cbarrete/tree-sitter-ledger][tree-sitter-ledger]] by Cédric Barreteau.
+
+** License
+
+MIT. See [[file:LICENSE][LICENSE]].

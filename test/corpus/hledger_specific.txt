@@ -1,0 +1,23 @@
+================================================================================
+balance assignment
+================================================================================
+
+2024-05-03
+    assets:checking  $100 =
+    expenses:food
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (posting
+          (account)
+          (amount
+            (commodity)
+            (quantity))
+          (balance_assertion))
+        (posting
+          (account))))))

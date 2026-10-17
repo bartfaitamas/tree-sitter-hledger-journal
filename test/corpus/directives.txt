@@ -1,0 +1,303 @@
+=================
+Account directive
+=================
+account Eszközök           ; type: Asset
+
+---
+
+(source_file
+ (journal_item
+   (accountdirective (account) (comment))))
+
+=====================================
+Commodity directive with right symbol
+=====================================
+commodity -1.234,00 HUF   ; hello
+
+---
+
+(source_file
+ (journal_item
+   (commoditydirective (amount (negative_quantity) (commodity))
+                       (comment))))
+
+
+======================
+Decimal Mark directive
+======================
+decimal-mark ,
+
+---
+(source_file
+  (journal_item
+   (decimalmarkdirective (decimalmark))))
+
+========================
+Default Year directive 1
+========================
+Y 2025
+
+---
+(source_file
+  (journal_item
+   (defaultyeardirective (year))))
+
+========================
+Default Year directive 2
+========================
+year 2025
+
+---
+(source_file
+  (journal_item
+   (defaultyeardirective (year))))
+
+========================
+Default Year directive 3
+========================
+apply year 2025
+
+---
+(source_file
+  (journal_item
+   (defaultyeardirective (year))))
+
+
+=================================
+Default Year directive two digits
+=================================
+apply year 25
+
+---
+(source_file
+  (journal_item
+   (defaultyeardirective (year))))
+
+=================================
+Default Year directive error
+:error
+=================================
+apply year 25332
+
+---
+(source_file
+  (journal_item
+   (defaultyeardirective (year))))
+
+=================
+Include directive
+=================
+include /foo/bar.journal
+
+---
+(source_file
+  (journal_item
+   (includedirective (includepath))))
+
+=================
+Default commodity directive
+=================
+D 100 HUF
+
+---
+(source_file
+  (journal_item
+   (defaultcommoditydirective (amount (quantity) (commodity)))))
+
+=======================
+Market prices directive
+=======================
+P 2025-09-25 USD 336,78 HUF
+
+---
+(source_file
+  (journal_item
+   (marketpricedirective (date) (commodity) (amount (quantity) (commodity)))))
+
+
+=======================
+Apply account directive
+=======================
+apply account Foo:Bar
+
+---
+(source_file
+ (journal_item
+  (applyaccountdirective (account))))
+
+================================================================================
+tag names with digits and dashes
+================================================================================
+tag date2
+tag business-trip
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (tagdirective))
+  (journal_item
+    (tagdirective)))
+
+================================================================================
+unknown account subdirective
+================================================================================
+account assets:cash
+    bogus thing here
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (accountdirective
+      (account)
+      (unknown_subdirective))))
+
+================================================================================
+unknown payee and tag subdirectives
+================================================================================
+payee Shop
+    bogus thing
+tag t
+    bogus thing
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (payeedirective
+      (payee)
+      (unknown_subdirective)))
+  (journal_item
+    (tagdirective
+      (unknown_subdirective))))
+
+================================================================================
+known subdirective stays typed
+================================================================================
+account a
+    note main wallet
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (accountdirective
+      (account)
+      (account_subdirective
+        (note_subdirective)))))
+
+================================================================================
+comment block
+================================================================================
+comment
+2024-01-01 not a txn
+end comment
+2024-01-02 x
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (comment_block))
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+unterminated comment block
+================================================================================
+comment
+anything
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (comment_block)))
+
+================================================================================
+trailing comments on include, P, D
+================================================================================
+include foo.journal  ; c
+P 2024-01-01 EUR $1.10  ; c
+D $1,000.00  ; c
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (includedirective
+      (includepath)
+      (comment)))
+  (journal_item
+    (marketpricedirective
+      (date)
+      (commodity)
+      (amount
+        (commodity)
+        (quantity))
+      (comment)))
+  (journal_item
+    (defaultcommoditydirective
+      (amount
+        (commodity)
+        (quantity))
+      (comment))))
+
+================================================================================
+default year without space
+================================================================================
+Y2023
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (defaultyeardirective
+      (year))))
+
+================================================================================
+unknown commodity subdirective is an error
+================================================================================
+commodity 1.000,00 EUR
+    whatever 1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (commoditydirective
+      (ERROR
+        (amount
+          (quantity)
+          (commodity)))
+      (amount
+        (commodity)
+        (quantity)))))
+
+================================================================================
+commodity directive without amount
+================================================================================
+commodity EUR
+commodity $
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (commoditydirective
+      (commodity)))
+  (journal_item
+    (commoditydirective
+      (commodity))))

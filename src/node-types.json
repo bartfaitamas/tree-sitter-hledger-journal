@@ -1,0 +1,1058 @@
+[
+  {
+    "type": "account_subdirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "alias_subdirective",
+          "named": true
+        },
+        {
+          "type": "assert_subdirective",
+          "named": true
+        },
+        {
+          "type": "check_subdirective",
+          "named": true
+        },
+        {
+          "type": "default_subdirective",
+          "named": true
+        },
+        {
+          "type": "note_subdirective",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "accountdirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "account",
+          "named": true
+        },
+        {
+          "type": "account_subdirective",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "unknown_subdirective",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "alias_subdirective",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "aliasdirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "amount",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "commodity",
+          "named": true
+        },
+        {
+          "type": "negative_quantity",
+          "named": true
+        },
+        {
+          "type": "quantity",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "applyaccountdirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "account",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "assert_subdirective",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "automated_xact",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "note",
+          "named": true
+        },
+        {
+          "type": "posting",
+          "named": true
+        },
+        {
+          "type": "query",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "balance_assertion",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "amount",
+          "named": true
+        },
+        {
+          "type": "price",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "check_subdirective",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "code",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "comment_block",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "commodity",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "commodity_subdirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "alias_subdirective",
+          "named": true
+        },
+        {
+          "type": "default_subdirective",
+          "named": true
+        },
+        {
+          "type": "format_subdirective",
+          "named": true
+        },
+        {
+          "type": "note_subdirective",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "commoditydirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "amount",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "commodity",
+          "named": true
+        },
+        {
+          "type": "commodity_subdirective",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "date",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "date_spec",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "decimalmark",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "decimalmarkdirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "decimalmark",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "default_subdirective",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "defaultcommoditydirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "amount",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "defaultyeardirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "year",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "effective_date",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "endaliasesdirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "endapplyaccountdirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "format_subdirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "amount",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "includedirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "includepath",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interval",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "date_spec",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "journal_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "accountdirective",
+          "named": true
+        },
+        {
+          "type": "aliasdirective",
+          "named": true
+        },
+        {
+          "type": "applyaccountdirective",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "comment_block",
+          "named": true
+        },
+        {
+          "type": "commoditydirective",
+          "named": true
+        },
+        {
+          "type": "decimalmarkdirective",
+          "named": true
+        },
+        {
+          "type": "defaultcommoditydirective",
+          "named": true
+        },
+        {
+          "type": "defaultyeardirective",
+          "named": true
+        },
+        {
+          "type": "endaliasesdirective",
+          "named": true
+        },
+        {
+          "type": "endapplyaccountdirective",
+          "named": true
+        },
+        {
+          "type": "includedirective",
+          "named": true
+        },
+        {
+          "type": "marketpricedirective",
+          "named": true
+        },
+        {
+          "type": "payeedirective",
+          "named": true
+        },
+        {
+          "type": "tagdirective",
+          "named": true
+        },
+        {
+          "type": "xact",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lot_price",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "amount",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "marketpricedirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "amount",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "commodity",
+          "named": true
+        },
+        {
+          "type": "date",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "multiplier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "amount",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "negative_quantity",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "note",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "note_subdirective",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "payee",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "payee_subdirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "alias_subdirective",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "payeedirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "payee",
+          "named": true
+        },
+        {
+          "type": "payee_subdirective",
+          "named": true
+        },
+        {
+          "type": "unknown_subdirective",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "periodic_xact",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "interval",
+          "named": true
+        },
+        {
+          "type": "note",
+          "named": true
+        },
+        {
+          "type": "payee",
+          "named": true
+        },
+        {
+          "type": "posting",
+          "named": true
+        },
+        {
+          "type": "status",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "plain_xact",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "code",
+          "named": true
+        },
+        {
+          "type": "date",
+          "named": true
+        },
+        {
+          "type": "effective_date",
+          "named": true
+        },
+        {
+          "type": "note",
+          "named": true
+        },
+        {
+          "type": "payee",
+          "named": true
+        },
+        {
+          "type": "posting",
+          "named": true
+        },
+        {
+          "type": "secondarydate",
+          "named": true
+        },
+        {
+          "type": "status",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "posting",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "account",
+          "named": true
+        },
+        {
+          "type": "amount",
+          "named": true
+        },
+        {
+          "type": "balance_assertion",
+          "named": true
+        },
+        {
+          "type": "lot_price",
+          "named": true
+        },
+        {
+          "type": "multiplier",
+          "named": true
+        },
+        {
+          "type": "note",
+          "named": true
+        },
+        {
+          "type": "price",
+          "named": true
+        },
+        {
+          "type": "status",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "price",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "amount",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quantity",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "query",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "secondarydate",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "journal_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "status",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "tagdirective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assert_subdirective",
+          "named": true
+        },
+        {
+          "type": "check_subdirective",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "unknown_subdirective",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unknown_subdirective",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "xact",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "automated_xact",
+          "named": true
+        },
+        {
+          "type": "periodic_xact",
+          "named": true
+        },
+        {
+          "type": "plain_xact",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "year",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "\t",
+    "named": false
+  },
+  {
+    "type": " ",
+    "named": false
+  },
+  {
+    "type": " \t",
+    "named": false
+  },
+  {
+    "type": "  ",
+    "named": false
+  },
+  {
+    "type": "!",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "=*",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": "==*",
+    "named": false
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "@@",
+    "named": false
+  },
+  {
+    "type": "D",
+    "named": false
+  },
+  {
+    "type": "P",
+    "named": false
+  },
+  {
+    "type": "Y",
+    "named": false
+  },
+  {
+    "type": "account",
+    "named": false
+  },
+  {
+    "type": "account",
+    "named": true
+  },
+  {
+    "type": "alias",
+    "named": false
+  },
+  {
+    "type": "aliases",
+    "named": false
+  },
+  {
+    "type": "apply",
+    "named": false
+  },
+  {
+    "type": "apply year",
+    "named": false
+  },
+  {
+    "type": "assert",
+    "named": false
+  },
+  {
+    "type": "check",
+    "named": false
+  },
+  {
+    "type": "comment",
+    "named": false
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "commodity",
+    "named": false
+  },
+  {
+    "type": "day",
+    "named": false
+  },
+  {
+    "type": "decimal-mark",
+    "named": false
+  },
+  {
+    "type": "default",
+    "named": false
+  },
+  {
+    "type": "end",
+    "named": false
+  },
+  {
+    "type": "eval",
+    "named": false
+  },
+  {
+    "type": "format",
+    "named": false
+  },
+  {
+    "type": "include",
+    "named": false
+  },
+  {
+    "type": "includepath",
+    "named": true
+  },
+  {
+    "type": "last",
+    "named": false
+  },
+  {
+    "type": "month",
+    "named": false
+  },
+  {
+    "type": "next",
+    "named": false
+  },
+  {
+    "type": "nomarket",
+    "named": false
+  },
+  {
+    "type": "note",
+    "named": false
+  },
+  {
+    "type": "payee",
+    "named": false
+  },
+  {
+    "type": "quarter",
+    "named": false
+  },
+  {
+    "type": "tag",
+    "named": false
+  },
+  {
+    "type": "this",
+    "named": false
+  },
+  {
+    "type": "uuid",
+    "named": false
+  },
+  {
+    "type": "week",
+    "named": false
+  },
+  {
+    "type": "year",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "{{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  },
+  {
+    "type": "}}",
+    "named": false
+  },
+  {
+    "type": "~",
+    "named": false
+  }
+]

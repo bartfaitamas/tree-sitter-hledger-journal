@@ -1,0 +1,316 @@
+================================================================================
+periodic transactions
+================================================================================
+
+~ monthly
+    State:2021:Tax
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval)
+        (posting
+          (account))))))
+
+================================================================================
+no space after tilde
+================================================================================
+~weekly
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+year-month bounds
+================================================================================
+~ monthly from 2025/02 to 2025/05
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval
+          (date_spec)
+          (date_spec))
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+nth weekday with bounds
+================================================================================
+~ every 3rd friday from 2025/2/10 to 2025/6
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval
+          (date_spec)
+          (date_spec))
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+nth day of month
+================================================================================
+~ every 30th day of month
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+month and day
+================================================================================
+~ every 3rd March from 2025 to 2027
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval
+          (date_spec)
+          (date_spec))
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+day and month
+================================================================================
+~ every march 3rd
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+weekday and weekendday
+================================================================================
+~ every weekday
+    a  1
+    b
+
+~ every weekendday
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account)))))
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+day-of-month shorthand
+================================================================================
+~ 15  rent
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+three spaces before description
+================================================================================
+~ 2025-03-01   Projected
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+status after interval
+================================================================================
+~ monthly  * cleared rent
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval)
+        (status)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+comment after interval
+================================================================================
+~ monthly  ; budget
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval)
+        (note)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+bare date after period
+================================================================================
+~ monthly 2023-08
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval
+          (date_spec))
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+single space before description is an error
+================================================================================
+~ monthly rent
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (periodic_xact
+        (interval)
+        (ERROR)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))

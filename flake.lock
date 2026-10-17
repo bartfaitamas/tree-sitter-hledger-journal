@@ -1,0 +1,45 @@
+{
+  "nodes": {
+    "hledger-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774049323,
+        "narHash": "sha256-uEf1LcwHmGzZpx2o4J0R8LNv0AyIH0cXhkwfWr3w0k0=",
+        "owner": "simonmichael",
+        "repo": "hledger",
+        "rev": "6dffe9591336f395b2b9f8c709ed688e748960a9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "simonmichael",
+        "ref": "1.52",
+        "repo": "hledger",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1792116957,
+        "narHash": "sha256-EjZqHKObBfIOeHZnMRVV87HB3pPq/WBkmRJWyFxmZu8=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f20cd90e28fe0403873f473b29e42662cd86e8c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "hledger-src": "hledger-src",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree-sitter generate*)",
+      "Bash(tree-sitter test*)",
+      "Bash(tree-sitter parse*)",
+      "Bash(tree-sitter query*)",
+      "Bash(node --test*)",
+      "Bash(node scripts/acceptance/*)",
+      "Bash(hledger *)",
+      "Bash(nix flake check*)",
+      "Bash(nix build*)",
+      "Bash(make*)"
+    ]
+  }
+}

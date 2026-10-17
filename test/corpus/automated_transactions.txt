@@ -1,0 +1,144 @@
+================================================================================
+automated transactions
+================================================================================
+
+= /Salary/
+    (Budget:Food)                           £500.00
+    (Budget:Books)                          £200.00
+
+= /Food/
+    (Budget:Food)                           -1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (automated_xact
+        (query)
+        (posting
+          (account)
+          (amount
+            (commodity)
+            (quantity)))
+        (posting
+          (account)
+          (amount
+            (commodity)
+            (quantity))))))
+  (journal_item
+    (xact
+      (automated_xact
+        (query)
+        (posting
+          (account)
+          (amount
+            (negative_quantity)))))))
+
+================================================================================
+multiplier postings
+================================================================================
+= expenses:food
+    (budget:food)  *-1
+    assets:budget  *1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (automated_xact
+        (query)
+        (posting
+          (account)
+          (multiplier
+            (amount
+              (negative_quantity))))
+        (posting
+          (account)
+          (multiplier
+            (amount
+              (quantity))))))))
+
+================================================================================
+multiplier with commodity
+================================================================================
+= a
+    b  *$100
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (automated_xact
+        (query)
+        (posting
+          (account)
+          (multiplier
+            (amount
+              (commodity)
+              (quantity))))))))
+
+================================================================================
+multiplier with cost
+================================================================================
+= a
+    b  *0.25 "Client Hours" @ $100
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (automated_xact
+        (query)
+        (posting
+          (account)
+          (multiplier
+            (amount
+              (quantity)
+              (commodity)))
+          (price
+            (amount
+              (commodity)
+              (quantity))))))))
+
+================================================================================
+empty query
+================================================================================
+=
+    a  *1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (automated_xact
+        (posting
+          (account)
+          (multiplier
+            (amount
+              (quantity))))))))
+
+================================================================================
+multiplier in regular transaction is an error
+================================================================================
+2024-01-01 x
+    a  *2
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (ERROR))
+        (posting
+          (account))))))

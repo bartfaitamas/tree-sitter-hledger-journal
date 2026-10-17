@@ -1,0 +1,141 @@
+====================
+Simplest transaction
+====================
+2025-01-01
+  assets:cash
+  expenses:food    100 HUF
+
+
+---
+(source_file
+ (journal_item
+  (xact
+      (plain_xact (date)
+               (posting (account))
+               (posting (account) (amount (quantity) (commodity)))))))
+
+==========================================
+Transaction with secondary date and status and code
+==========================================
+2025-01-01=2025-01-01 * (code) foobar
+  expenses:food   100 HUF = 100 HUF
+  assets:cash   -100 HUF
+
+
+---
+(source_file
+ (journal_item
+  (xact
+      (plain_xact (date) (effective_date) (status) (code) (payee)
+               (posting (account) (amount (quantity) (commodity)) (balance_assertion (amount (quantity) (commodity))))
+               (posting (account) (amount (negative_quantity) (commodity)))))))
+
+================================================================================
+header comment without payee
+================================================================================
+2024-01-01  ; tag:value
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (note)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+status directly followed by payee
+================================================================================
+2024-01-01 *Shop
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (status)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+transaction without postings
+================================================================================
+2024-01-01 opening note
+
+2024-01-02 x
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee))))
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+date-only transaction
+================================================================================
+2024-01-01
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)))))
+
+================================================================================
+no space after date is an error
+================================================================================
+2024-01-01* x
+    a  1
+    b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (ERROR)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))

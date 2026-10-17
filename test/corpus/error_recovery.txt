@@ -1,0 +1,91 @@
+================================================================================
+error stays inside one transaction
+================================================================================
+2024-04-01 Broken
+    a  $1 }
+    b
+
+2024-04-02 Second
+    c  2
+    d
+
+2024-04-03 Third
+    e  3
+    f
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (commodity)
+            (quantity))
+          (ERROR))
+        (posting
+          (account)))))
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account)))))
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))
+
+================================================================================
+unclosed code stays inside its transaction
+================================================================================
+2024-01-01 (123 payee
+    a  1
+    b
+
+2024-01-02 x
+    (c)  1
+    d
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (code
+          (MISSING ")"))
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account)))))
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity)))
+        (posting
+          (account))))))

@@ -1,0 +1,148 @@
+================================================================================
+total assertion
+================================================================================
+2024-01-01 x
+    a  $1 == $1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (commodity)
+            (quantity))
+          (balance_assertion
+            (amount
+              (commodity)
+              (quantity))))))))
+
+================================================================================
+inclusive assertion
+================================================================================
+2024-01-01 x
+    a  $1 =* $1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (commodity)
+            (quantity))
+          (balance_assertion
+            (amount
+              (commodity)
+              (quantity))))))))
+
+================================================================================
+total inclusive assertion
+================================================================================
+2024-01-01 x
+    a  $1 ==* $1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (commodity)
+            (quantity))
+          (balance_assertion
+            (amount
+              (commodity)
+              (quantity))))))))
+
+================================================================================
+assertion with cost
+================================================================================
+2024-01-01 x
+    a  1 A @ 2 B = 1 A @ 2 B
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity)
+            (commodity))
+          (price
+            (amount
+            (quantity)
+            (commodity)))
+          (balance_assertion
+            (amount
+              (quantity)
+              (commodity))
+            (price
+              (amount
+                (quantity)
+                (commodity)))))))))
+
+================================================================================
+assignment with total assertion
+================================================================================
+2024-01-01 x
+    a  == $1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (balance_assertion
+            (amount
+              (commodity)
+              (quantity))))))))
+
+================================================================================
+assertion followed by comment
+================================================================================
+2024-01-01 x
+    a  1 = 11  ; checked against statement
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (journal_item
+    (xact
+      (plain_xact
+        (date)
+        (payee)
+        (posting
+          (account)
+          (amount
+            (quantity))
+          (balance_assertion
+            (amount
+              (quantity)))
+          (note))))))
+
